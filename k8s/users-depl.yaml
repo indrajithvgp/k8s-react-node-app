@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-depl
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: usersapp
+  template:
+    metadata:
+      labels:
+        app: usersapp
+    spec:
+      containers:
+        - name: users
+          image: indrajithvgp/users-app:latest
+          env:
+            - name: AUTH_ADDRESS
+              value: auth-srv

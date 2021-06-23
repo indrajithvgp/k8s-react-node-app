@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tasks-depl
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      name: tasksapp
+  template:
+    metadata:
+      labels:
+        name: tasksapp
+    spec: 
+      containers:
+        - name: tasks
+          image: indrajithvgp/tasks-app:latest
+          env:
+            - name: AUTH_ADDRESS
+              value: auth-srv
+            - name: TASKS_FOLDER
+              value: tasks
